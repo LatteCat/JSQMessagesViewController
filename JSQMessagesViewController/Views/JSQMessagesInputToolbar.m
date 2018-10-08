@@ -89,6 +89,19 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+// 修复 iPhone X 底部栏显示异常的问题
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+    
+    if (@available(iOS 11.0, *)) {
+        UILayoutGuide * _Nonnull safeArea = self.window.safeAreaLayoutGuide;
+        if (safeArea) {
+            NSLayoutYAxisAnchor * _Nonnull bottomAnchor = safeArea.bottomAnchor;
+            [[self bottomAnchor] constraintLessThanOrEqualToSystemSpacingBelowAnchor:bottomAnchor multiplier:1.0].active = YES;
+        }
+    }
+}
+
 #pragma mark - Setters
 
 - (void)setPreferredDefaultHeight:(CGFloat)preferredDefaultHeight
