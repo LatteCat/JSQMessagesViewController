@@ -144,11 +144,16 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.tapGestureRecognizer = tap;
 }
 
+/**
+ *  修改了 accessoryButton 专门用于显示发送失败的状态
+ */
 - (void)configureAccessoryButton
 {
-    UIColor *tintColor = [UIColor lightGrayColor];
-    UIImage *shareActionImage = [[UIImage jsq_shareActionImage] jsq_imageMaskedWithColor:tintColor];
-    [self.accessoryButton setImage:shareActionImage forState:UIControlStateNormal];
+//    UIColor *tintColor = [UIColor lightGrayColor];
+//    UIImage *shareActionImage = [[UIImage jsq_shareActionImage] jsq_imageMaskedWithColor:tintColor];
+//    [self.accessoryButton setImage:shareActionImage forState:UIControlStateNormal];
+    UIImage *failStatusImage = [UIImage jsq_failStatusImage];
+    [self.accessoryButton setImage:failStatusImage forState:UIControlStateNormal];
 }
 
 - (void)dealloc

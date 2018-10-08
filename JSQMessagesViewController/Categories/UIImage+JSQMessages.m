@@ -109,4 +109,8 @@
 {
     return [UIImage jsq_bubbleImageFromBundleWithName:@"share"];
 }
+
++ (UIImage *)jsq_failStatusImage {
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"fail"];
+}
 @end

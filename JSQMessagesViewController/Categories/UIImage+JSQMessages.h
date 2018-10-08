@@ -90,6 +90,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIImage *)jsq_shareActionImage;
 
+/**
+ *  返回一个带感叹号的图片
+ */
++ (UIImage *)jsq_failStatusImage;
+
 @end
 
 NS_ASSUME_NONNULL_END
