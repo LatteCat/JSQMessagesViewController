@@ -94,10 +94,8 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
     [super didMoveToWindow];
     
     if (@available(iOS 11.0, *)) {
-        UILayoutGuide * _Nonnull safeArea = self.window.safeAreaLayoutGuide;
-        if (safeArea) {
-            NSLayoutYAxisAnchor * _Nonnull bottomAnchor = safeArea.bottomAnchor;
-            [[self bottomAnchor] constraintLessThanOrEqualToSystemSpacingBelowAnchor:bottomAnchor multiplier:1.0].active = YES;
+        if (self.window.safeAreaLayoutGuide != nil) {
+            [[self.contentView bottomAnchor] constraintLessThanOrEqualToSystemSpacingBelowAnchor:self.window.safeAreaLayoutGuide.bottomAnchor multiplier:1.0].active = YES;
         }
     }
 }
