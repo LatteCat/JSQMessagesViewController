@@ -24,7 +24,7 @@
 
 #import "UIView+JSQMessages.h"
 #import "UIDevice+JSQMessages.h"
-
+#import "UIImage+JSQMessages.h"
 
 static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
@@ -41,6 +41,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UIView *avatarContainerView;
+
+@property (weak, nonatomic) IBOutlet UIButton *accessoryButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleContainerWidthConstraint;
 
@@ -126,10 +128,25 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     self.cellBottomLabel.font = [UIFont systemFontOfSize:11.0f];
     self.cellBottomLabel.textColor = [UIColor lightGrayColor];
+    
+    [self configureAccessoryButton];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleTapGesture:)];
     [self addGestureRecognizer:tap];
     self.tapGestureRecognizer = tap;
+}
+
+/**
+ *  修改了 accessoryButton 专门用于显示发送失败的状态
+ */
+- (void)configureAccessoryButton
+{
+    //    UIColor *tintColor = [UIColor lightGrayColor];
+    //    UIImage *shareActionImage = [[UIImage jsq_shareActionImage] jsq_imageMaskedWithColor:tintColor];
+    //    [self.accessoryButton setImage:shareActionImage forState:UIControlStateNormal];
+    self.accessoryButton.backgroundColor = nil;
+    UIImage *failStatusImage = [UIImage jsq_failStatusImage];
+    [self.accessoryButton setImage:failStatusImage forState:UIControlStateNormal];
 }
 
 - (void)dealloc
@@ -166,6 +183,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     self.avatarImageView.image = nil;
     self.avatarImageView.highlightedImage = nil;
+    
+    self.accessoryButton.hidden = YES;
 }
 
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
@@ -389,6 +408,11 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     }
     
     return NO;
+}
+
+- (IBAction)didTapAccessoryButton:(UIButton *)accessoryButton
+{
+    [self.delegate messagesCollectionViewCellDidTapAccessoryButton:self];
 }
 
 @end

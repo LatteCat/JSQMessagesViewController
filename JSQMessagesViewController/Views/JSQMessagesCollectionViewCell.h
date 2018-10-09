@@ -72,6 +72,13 @@
  */
 - (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell didPerformAction:(SEL)action withSender:(id)sender;
 
+/**
+ *  Tells the delegate that the accessory button of the cell has been tapped.
+ *
+ *  @param cell The cell that the accessory button belongs to.
+ */
+- (void)messagesCollectionViewCellDidTapAccessoryButton:(JSQMessagesCollectionViewCell *)cell;
+
 @end
 
 
@@ -153,6 +160,11 @@
  *  Doing so could result in unexpected behavior.
  */
 @property (weak, nonatomic, readonly) UIView *avatarContainerView;
+
+/**
+ *  Returns the accessory button of the cell.
+ */
+@property (weak, nonatomic, readonly) UIButton *accessoryButton;
 
 /**
  *  The media view of the cell. This view displays the contents of a media message.

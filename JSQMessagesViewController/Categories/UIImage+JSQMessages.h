@@ -81,4 +81,9 @@
  */
 + (UIImage *)jsq_defaultPauseImage;
 
+/**
+ *  返回一个带感叹号的图片
+ */
++ (UIImage *)jsq_failStatusImage;
+
 @end

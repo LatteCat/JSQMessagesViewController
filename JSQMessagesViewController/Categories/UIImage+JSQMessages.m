@@ -105,4 +105,8 @@
     return [UIImage jsq_bubbleImageFromBundleWithName:@"pause"];
 }
 
++ (UIImage *)jsq_failStatusImage {
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"fail"];
+}
+
 @end
