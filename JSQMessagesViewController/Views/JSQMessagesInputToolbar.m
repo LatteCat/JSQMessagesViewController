@@ -91,7 +91,10 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 - (void)didMoveToWindow {
     [super didMoveToWindow];
     if (@available(iOS 11.0, *)) {
-        [[self bottomAnchor] constraintLessThanOrEqualToSystemSpacingBelowAnchor:self.window.safeAreaLayoutGuide.bottomAnchor multiplier:1.0].active = YES;
+        // 加上非空判断，防止退出聊天界面时崩溃
+        if (self.window.safeAreaLayoutGuide != nil) {
+            [[self bottomAnchor] constraintLessThanOrEqualToSystemSpacingBelowAnchor:self.window.safeAreaLayoutGuide.bottomAnchor multiplier:1.0].active = YES;
+        }
     }
 }
 
